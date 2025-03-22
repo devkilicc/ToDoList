@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ToDoList.Models.ToDoItem>
+
+@{
+    ViewBag.Title = "To-Do List";
+}
+
+<h2>To-Do List</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Task</th>
+            <th>Status</th>
+            <th>Transactions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Task</td>
+                <td>@(item.IsCompleted ? "Completed" : "Pending")</td>
+                <td>
+                    @if (!item.IsCompleted)
+                    {
+                        @Html.ActionLink("Complete", "Complete", new { id = item.Id }, new { @class = "btn btn-success" })
+                    }
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>@Html.ActionLink("Add New Task", "Create", null, new { @class = "btn btn-primary" })</p>

@@ -1,0 +1,19 @@
+﻿@model ToDoList.Models.ToDoItem
+
+@{
+    ViewBag.Title = "Add New Task";
+}
+
+<h2>Yeni Görev Ekle</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Task)
+        @Html.TextBoxFor(model => model.Task, new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Ekle</button>
+}
